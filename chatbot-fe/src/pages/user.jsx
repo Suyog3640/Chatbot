@@ -34,7 +34,7 @@ export function User() {
   const chatbotId = sessionStorage.getItem('chatbotId');
 
   async function fetchChats() {
-    const res = await axios.post('http://localhost:4000/chatbot/getQuestions', {chatbotId: chatbotId});
+    const res = await axios.post(`${apiUrl}/chatbot/getQuestions`, {chatbotId: chatbotId});
     setSteps(res.data.questions);
       // delete message field if empty
     // var filterSteps = res.data.filter(step => {
