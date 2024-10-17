@@ -11,7 +11,7 @@ const app = express();
 
 app.use(cors(
     {
-        origin: ["https://chatbot-frontend-smoky.vercel.app"],
+        origin: "https://chatbot-frontend-smoky.vercel.app",
         methods: ["POST", "GET"],
         credentials: true,
         allowedHeaders: 'Content-Type,Authorization',
