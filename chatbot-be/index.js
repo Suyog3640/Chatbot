@@ -9,7 +9,17 @@ dotenv.config();
 connectDB();
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: '*',
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+};
+
+// Use CORS middleware
+app.use(cors(corsOptions));
+
+// Handle preflight (OPTIONS) requests globally
+app.options('*', cors(corsOptions));
 app.use(express.json());
 
 app.use('/', router);
