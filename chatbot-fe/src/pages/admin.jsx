@@ -14,7 +14,7 @@ export function Admin() {
     });
 
     //const apiUrl = 'http://localhost:4000';
-    const apiUrl = 'chatbot-backend-two.vercel.app';
+    const apiUrl = 'https://chatbot-backend-two.vercel.app';
 
     // async function fetchChats() {
     //     const res = await axios.get(apiUrl + '/chatbot/getQuestions');
