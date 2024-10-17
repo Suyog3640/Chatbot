@@ -10,7 +10,7 @@ export function Login() {
   const navigate = useNavigate();
 
   //const apiUrl = 'http://localhost:4000';
-  const apiUrl = 'https://chatbot-backend-two.vercel.app';
+  const apiUrl = 'https://chatbot-backend-alpha.vercel.app';
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission behavior
