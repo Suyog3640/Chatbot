@@ -2,23 +2,20 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 
-const connectDB = require('../db/dbConnection');
-const router = require('../routes/route');
-
+const connectDB = require('./db/dbConnection');
+const router = require('./routes/route');
 dotenv.config();
-connectDB();
 
+connectDB();
 const app = express();
 
-app.use(cors({
-  origin: 'https://chatbot-frontend-smoky.vercel.app',
-  credentials: true,
-}));
 
 app.use(express.json());
+
 app.use('/', router);
 
-// Correct export for Vercel serverless function
-module.exports = (req, res) => {
-  app(req, res);
-};
+const PORT = 4000; 
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
