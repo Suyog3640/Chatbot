@@ -2,31 +2,21 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 
-const connectDB = require('./db/dbConnection');
-const router = require('./routes/Route');
+const connectDB = require('../db/dbConnection'); // Adjust the path as necessary
+const router = require('../routes/route'); // Adjust the path as necessary
+
 dotenv.config();
 
-connectDB();
 const app = express();
+connectDB();
 
-const corsOptions = {
-  origin: '*',
-  allowedHeaders: ['Content-Type', 'Authorization'],
+app.use(cors({
+  origin: 'https://chatbot-frontend-smoky.vercel.app', // Change to your frontend URL
   credentials: true,
-};
+}));
 
-// Use CORS middleware
-app.use(cors(corsOptions));
-
-// Handle preflight (OPTIONS) requests globally
-app.options('*', cors(corsOptions));
 app.use(express.json());
-
 app.use('/', router);
 
-const PORT = 4000; 
-
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
-
+// Export the Express app as a serverless function
+module.exports = app;
