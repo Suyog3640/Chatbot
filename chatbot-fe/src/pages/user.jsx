@@ -23,7 +23,7 @@ export function User() {
   const[steps, setSteps] = useState([]);
   
   //const apiUrl = 'http://localhost:4000';
-  const apiUrl = 'https://chatbot-backend-two.vercel.app';
+  const apiUrl = 'https://chatbot-backend-alpha.vercel.app';
 
   // const location = useLocation();
 
