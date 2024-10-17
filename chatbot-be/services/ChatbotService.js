@@ -1,11 +1,14 @@
 const chatbot = require("../models/Chatbot");
+const user = require("../models/User");
 
 exports.createChatbot = async(req, res) => {
-    const { name, userId } = req.body; // Expecting id and question details in the request body
+    const { name, userId } = req.body;
 
     try {
-        const newQuestion = new chatbot({name: name, userId: userId});
-        await newQuestion.save();
+        const newChatbot = new chatbot({name: name, userId: userId});
+        await newChatbot.save();
+
+        await user.findByIdAndUpdate(userId,{ chatbotId: newChatbot._id });
 
         res.status(200).json({ message: 'Chatbot created successfully' });
     } catch (error) {
@@ -14,21 +17,19 @@ exports.createChatbot = async(req, res) => {
 };
 
 exports.createQuestions = async(req, res) => {
-    const { chatbotId, question } = req.body; // Expecting id and question details in the request body
-    console.log(req.body)
+    const { chatbotId, question } = req.body;
 
     try {
         const chatbotDocument = await chatbot.findOneAndUpdate(
             { _id: chatbotId },
             { $push: { questions: question } },  // Push the question
-            { new: true, useFindAndModify: false } // Return the updated document
+            { new: true, useFindAndModify: false }
         );
 
         if (!chatbotDocument) {
             return res.status(404).json({ error: 'Chatbot not found' });
         }
 
-        // chatbotDocument.questions.push(question);
         await chatbotDocument.save();
 
         res.status(200).json({ message: 'Questions added successfully' });

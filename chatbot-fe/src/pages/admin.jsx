@@ -13,8 +13,7 @@ export function Admin() {
         options: []
     });
 
-    //const apiUrl = 'http://localhost:4000';
-    const apiUrl = 'https://chatbot-backend-alpha.vercel.app';
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     // async function fetchChats() {
     //     const res = await axios.get(apiUrl + '/chatbot/getQuestions');
@@ -24,7 +23,7 @@ export function Admin() {
     const [showUsers, setUsers] = useState([]);
 
     async function getAllUsers() {
-        const res = await axios.get(apiUrl + '/user/getUsers');
+        const res = await axios.get(`${apiUrl}/user/getUsers`);
         setUsers(res.data);
     }
 
@@ -50,7 +49,7 @@ export function Admin() {
                 question: formData
             }
 
-            await axios.post(apiUrl + '/chatbot/addQuestion', data);
+            await axios.post(`${apiUrl}/chatbot/addQuestion`, data);
             alert('Chat step added successfully!');
             setFormData({ id: '', message: '', trigger: '', user: false, end: false, options: [] });
         } catch (error) {
@@ -118,7 +117,7 @@ export function Admin() {
             userId: userName
         }
         try {
-            const res = await axios.post(apiUrl + '/chatbot/addChatbot', data);
+            const res = await axios.post(`${apiUrl}/chatbot/addChatbot`, data);
             console.log(res);
             console.log('Chatbot created');
             getAllChatbots();
@@ -131,7 +130,7 @@ export function Admin() {
 
     const [chatBots, setChatBots] = useState([]);
     const getAllChatbots = async () => {
-        const res = await axios.get(apiUrl + '/chatbot/getChatbots');
+        const res = await axios.get(`${apiUrl}/chatbot/getChatbots`);
         setChatBots(res.data);
     }
 

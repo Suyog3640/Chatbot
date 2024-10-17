@@ -9,14 +9,13 @@ export function Login() {
 
   const navigate = useNavigate();
 
-  //const apiUrl = 'http://localhost:4000';
-  const apiUrl = 'https://chatbot-backend-alpha.vercel.app';
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission behavior
 
     try {
-        const res = await axios.post(apiUrl + '/user/login', { email, password });
+        const res = await axios.post(`${apiUrl}/user/login`, { email, password });
         // Assuming a successful login returns a 201 status code
         if (res.status === 200) {
             sessionStorage.setItem('userId', res.data._id);

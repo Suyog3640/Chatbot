@@ -14,7 +14,6 @@ exports.login = async(req, res) => {
     const { email, password } = req.body;
     try {
         const users = await user.findOne({email: email});
-        console.log(users);
         if(users.password===password)
         {
              res.status(200).json(users);

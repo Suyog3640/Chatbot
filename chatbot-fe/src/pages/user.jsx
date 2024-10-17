@@ -22,8 +22,7 @@ const theme = {
 export function User() {
   const[steps, setSteps] = useState([]);
   
-  //const apiUrl = 'http://localhost:4000';
-  const apiUrl = 'https://chatbot-backend-alpha.vercel.app';
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   // const location = useLocation();
 
