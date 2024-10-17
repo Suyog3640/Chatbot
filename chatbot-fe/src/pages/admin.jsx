@@ -13,7 +13,8 @@ export function Admin() {
         options: []
     });
 
-    const apiUrl = 'http://localhost:4000';
+    //const apiUrl = 'http://localhost:4000';
+    const apiUrl = 'chatbot-backend-two.vercel.app';
 
     // async function fetchChats() {
     //     const res = await axios.get(apiUrl + '/chatbot/getQuestions');
